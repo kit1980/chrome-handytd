@@ -25,19 +25,11 @@ if (regex.test(document.body.innerText)) { // if times/dates found
                                                                           + ", " + dtA.getTimezone() + ")");
             }
         } else {
-            // need to set timezone for the page
-            need_to_set_timezone = true;
         }
 
     });
 } 
 
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
-    if (need_to_set_timezone) {
-            console.log("nztf");
-
-        chrome.pageAction.setTitle({title: "Set Time Zone!", tabId: sender.tab.id}); 
-        chrome.pageAction.setIcon({path: "clock-alert.png", tabId: sender.tab.id}); 
-    }
     sendResponse({});
 });
