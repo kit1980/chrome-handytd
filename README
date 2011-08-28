@@ -1,0 +1,3 @@
+Google Chrome extension to convert times and dates on any web page to user's time zone (with respect to daylight saving time) and format.
+
+The extension uses patched version of timezone-js (https://github.com/kit1980/timezone-js) and date.js (http://www.datejs.com/).
