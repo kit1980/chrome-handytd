@@ -21,9 +21,13 @@ if (regex.test(document.body.innerText)) { // if times/dates found
                 dates[i] = dates[i].replace(/\n/g, "<br>");
                 var re = new RegExp(dates[i], "g");
                 var output_format = options["output_format"];
+                var user_timezone_label = "";
+                if (options["label_user_timezone"] === "true") {
+                    user_timezone_label = ", " + dtA.getTimezone();
+                }
                 document.body.innerHTML = document.body.innerHTML.replace(re, dates[i] + "<br>(" + 
                                                                           (new Date(dtA.getTime())).toString(output_format) 
-                                                                          + ", " + dtA.getTimezone() + ")");
+                                                                          + user_timezone_label + ")");
             }
         } else {
         }

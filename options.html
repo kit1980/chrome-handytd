@@ -13,6 +13,8 @@ function save_options() {
 
     localStorage["output_format"] = document.getElementById("output_format").value;
 
+    localStorage["label_user_timezone"] = document.getElementById("label_user_timezone").checked;
+
 
     // Update status to let user know options were saved.
     var status = document.getElementById("status");
@@ -41,6 +43,14 @@ function restore_options() {
     var output_format = localStorage["output_format"];
     if (output_format) {
         document.getElementById("output_format").value = output_format;
+    }
+
+
+    var label_user_timezone = localStorage["label_user_timezone"];
+    if (label_user_timezone === "true") {
+        document.getElementById("label_user_timezone").checked = true;
+    } else {
+        document.getElementById("label_user_timezone").checked = false;
     }
 
 }
