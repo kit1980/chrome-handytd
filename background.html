@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript">
+
+          chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+              // Show the page action for the tab that the sender (content script)
+              // was on.
+              chrome.pageAction.show(sender.tab.id);
+              //chrome.pageAction.setTitle({title: "Set Time Zone!", tabId: sender.tab.id}); 
+              //chrome.pageAction.setIcon({path: "clock-alert.png", tabId: sender.tab.id}); 
+
+              if (request.method == "getLocalStorage") {
+                  sendResponse({data: localStorage});
+              } else {
+                  sendResponse({});
+              }
+          });
+
+        </script>
+    </head>
+</html>

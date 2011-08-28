@@ -1,0 +1,52 @@
+<script type="text/javascript" src="timezone.js"></script>
+<script type="text/javascript" src="helpers.js"></script>
+
+<script type="text/javascript">
+
+var host;
+
+window.addEventListener("load", windowLoaded, false);
+function windowLoaded() {
+    chrome.tabs.getSelected(null, function(tab) {
+        host = tab.url.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/)[1]; // get domain from URL
+        document.getElementById('host').innerHTML = host;
+        populate_timezones_select("timezone");
+
+        var host_timezone = localStorage[host + "_timezone"];
+        if (host_timezone) {
+            var select = document.getElementById("timezone");
+            for (var i = 0; i < select.children.length; i++) {
+                var child = select.children[i];
+                if (child.value == host_timezone) {
+                    child.selected = "true";
+                    break;
+                }
+            }
+        }
+
+
+    });
+}
+
+function save() {
+    var select = document.getElementById("timezone");
+    var timezone = select.children[select.selectedIndex].value;
+    localStorage[host + "_timezone"] = timezone;
+
+    chrome.tabs.getSelected(null, function(tab) {
+        chrome.tabs.sendRequest(tab.id, {}, function(response) {
+            chrome.tabs.executeScript(null, {code:"location.reload()"});
+            window.close();
+        });
+    });
+}
+
+</script>
+
+
+<strong>Set Timezone for <span id="host"></span></strong>
+
+<select id="timezone">
+</select>
+
+<button onclick="save()">Save</button>
