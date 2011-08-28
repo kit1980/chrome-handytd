@@ -20,8 +20,9 @@ if (regex.test(document.body.innerText)) { // if times/dates found
                 dtA.convertToTimezone(options["user_timezone"]);
                 dates[i] = dates[i].replace(/\n/g, "<br>");
                 var re = new RegExp(dates[i], "g");
+                var output_format = options["output_format"];
                 document.body.innerHTML = document.body.innerHTML.replace(re, dates[i] + "<br>(" + 
-                                                                          (new Date(dtA.getTime())).toString('dddd, MMMM d, yyyy HH:mm') 
+                                                                          (new Date(dtA.getTime())).toString(output_format) 
                                                                           + ", " + dtA.getTimezone() + ")");
             }
         } else {

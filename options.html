@@ -11,6 +11,9 @@ function save_options() {
     var user_timezone = select.children[select.selectedIndex].value;
     localStorage["user_timezone"] = user_timezone;
 
+    localStorage["output_format"] = document.getElementById("output_format").value;
+
+
     // Update status to let user know options were saved.
     var status = document.getElementById("status");
     status.innerHTML = "Options Saved.";
@@ -34,6 +37,12 @@ function restore_options() {
             }
         }
     }
+
+    var output_format = localStorage["output_format"];
+    if (output_format) {
+        document.getElementById("output_format").value = output_format;
+    }
+
 }
 
 
@@ -48,7 +57,7 @@ User Timezone:
 <select id="user_timezone">
 </select> <br />
 
-Output Format: <input type="text" id="output_format" /> <br />
+Output Format: <input type="text" id="output_format" size="33" /> <br />
 Label New Timezone: <input type="checkbox" id="label_user_timezone" /> <br />
 
 <!-- Label Original Timezone: <input type="checkbox" id="label_original_timezone" /> <br /> -->
