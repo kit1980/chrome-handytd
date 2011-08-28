@@ -9,7 +9,7 @@
       "matches": [ "http://*/*", "https://*/*" ],
       "run_at": "document_idle"
    } ],
-   "description": "Convert times and dates on any web page to user's time zone (with respect to daylight saving time) and format.",
+   "description": "Convert times and dates on a web page to user's timezone (with respect to daylight saving time) and format.",
    "icons": {
       "16": "clock.png"
    },
