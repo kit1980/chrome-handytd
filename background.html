@@ -3,6 +3,12 @@
     <head>
         <script type="text/javascript">
 
+          // Default options
+          if (!localStorage["user_timezone"]) localStorage["user_timezone"] = "Europe/Kiev";
+          if (!localStorage["output_format"]) localStorage["output_format"] = "dddd, MMMM d, yyyy HH:mm";
+          if (!localStorage["label_user_timezone"]) localStorage["label_user_timezone"] = "true";
+
+
           chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
               // Show the page action for the tab that the sender (content script)
               // was on.
